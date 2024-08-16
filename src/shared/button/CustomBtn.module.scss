@@ -1,0 +1,7 @@
+@use "../../app/styles/mixins.scss" as mixin;
+
+.custom__button {
+  @include mixin.block();
+  padding: 0px 5px;
+  cursor: pointer;
+}
