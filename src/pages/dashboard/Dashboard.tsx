@@ -6,7 +6,7 @@ import { IBlock, defaultBlocks } from "../../app/config/blocksData";
 import { useNavigate } from "react-router";
 
 const Dashboard: React.FC = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const [blocks, setBlocks] = useState<IBlock[]>(
     JSON.parse(localStorage.getItem("blocks") as string) || defaultBlocks
   );
@@ -36,12 +36,15 @@ const Dashboard: React.FC = () => {
     setBlocks((prevBlocks) => prevBlocks.filter((block) => block.id !== id));
   };
 
-  
-
   return (
     <div className={`${styles.container} animate`}>
       <CustomButton onClickHandler={resetBlocks}>Reset all</CustomButton>
-      <CustomButton modifyStyles={{marginLeft : 10}} onClickHandler={() => navigate('cryptoTransactions')}>Task 2</CustomButton>
+      <CustomButton
+        modifyStyles={{ marginLeft: 10 }}
+        onClickHandler={() => navigate("cryptoTransactions")}
+      >
+        Task 2
+      </CustomButton>
       {blocks.map((block) => (
         <Rnd
           key={block.id}
@@ -50,14 +53,14 @@ const Dashboard: React.FC = () => {
           minWidth={100}
           minHeight={30}
           style={{ zIndex: block.zIndex, transition: "0.1s" }}
-          onDragStop={(e, d) => {
+          onDragStop={(_, d) => {
             setBlocks((prevBlocks) =>
               prevBlocks.map((b) =>
                 b.id === block.id ? { ...b, x: d.x, y: d.y } : b
               )
             );
           }}
-          onResizeStop={(e, direction, ref, delta, position) => {
+          onResizeStop={(_1, _2, ref, _3, position) => {
             setBlocks((prevBlocks) =>
               prevBlocks.map((b) =>
                 b.id === block.id

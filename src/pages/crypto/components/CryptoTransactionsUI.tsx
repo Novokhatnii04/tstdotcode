@@ -39,7 +39,7 @@ const CryptoTransactionsUI: FC<ICryptoTransactionsUI> = ({
         {transactions.map((tx, index) => (
           <li className={styles.crypto__list_content} key={index}>
             <p>Hash: {tx.hash}</p>
-            <p>Sum: {tx.value.toFixed(8)} BTC</p>
+            <p>Sum: <strong>{tx.value.toFixed(8)} BTC</strong></p>
           </li>
         ))}
       </ul>
