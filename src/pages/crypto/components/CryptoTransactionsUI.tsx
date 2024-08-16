@@ -2,6 +2,7 @@ import { FC, useEffect } from "react";
 import CustomButton from "../../../shared/button/CustomBtn";
 import { ICryptoTransactionsUI } from "../../../app/types/webSocket";
 import styles from "./CryptoTransactions.module.scss";
+import { useNavigate } from "react-router";
 
 const CryptoTransactionsUI: FC<ICryptoTransactionsUI> = ({
   start,
@@ -11,11 +12,19 @@ const CryptoTransactionsUI: FC<ICryptoTransactionsUI> = ({
   totalValue,
 }) => {
 
+  const navigate = useNavigate()
+
   useEffect(() => {
     console.log(transactions);
   }, []);
 
+  const navigateHandler =( ) => {
+    navigate('/')
+  }
+
   return (
+    <div className={`${styles.container} animate `}>
+      <CustomButton onClickHandler={navigateHandler}>Task 1</CustomButton>
     <div className={styles.crypto}>
       <h2>Transactions list</h2>
       <div className={styles.crypto__buttons}>
@@ -34,6 +43,7 @@ const CryptoTransactionsUI: FC<ICryptoTransactionsUI> = ({
           </li>
         ))}
       </ul>
+    </div>
     </div>
   );
 };
